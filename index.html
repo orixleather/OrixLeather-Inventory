@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orix Leather Inventory</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#16100c;--panel:#221913;--line:#3b2d23;--gold:#d49a5a;--text:#f4ece2;--mute:#a69585;--bad:#e07a6a;--ok:#9bc28a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',system-ui,sans-serif;font-size:15px}
+button,input,select,textarea{font:inherit;color:inherit}
+.app{display:flex;min-height:100vh}
+nav{width:210px;background:#0f0b08;border-right:1px solid var(--line);padding:18px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+.brand{font-weight:700;font-size:19px;color:var(--gold);letter-spacing:.06em;padding:4px 10px 16px}
+nav button{background:none;border:0;text-align:left;padding:10px 12px;border-radius:8px;color:var(--mute);cursor:pointer}
+nav button.on,nav button:hover{background:var(--panel);color:var(--gold)}
+nav .sp{flex:1}
+main{flex:1;padding:22px;max-width:1100px;min-width:0}
+h2{margin:0 0 16px;font-weight:600;font-size:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.card small{color:var(--mute);display:block}
+.card b{font-size:22px;color:var(--gold);font-weight:600}
+table{width:100%;border-collapse:collapse}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{color:var(--mute);font-weight:500;font-size:13px}
+.wrap{overflow-x:auto}
+.btn{background:var(--gold);color:#24150a;border:0;border-radius:8px;padding:8px 14px;font-weight:600;cursor:pointer}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--text)}
+.btn.sm{padding:4px 9px;font-size:13px}
+input,select,textarea{background:#16100c;border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+label{display:block;font-size:13px;color:var(--mute);margin-bottom:10px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tag{padding:2px 9px;border-radius:99px;font-size:12px;border:1px solid var(--line)}
+.mute{color:var(--mute)}.bad{color:var(--bad)}.ok{color:var(--ok)}
+.modal{position:fixed;inset:0;background:#000a;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow:auto;z-index:9}
+.modal>div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;width:100%;max-width:640px}
+.bar{display:flex;gap:8px;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.lock{max-width:320px;margin:15vh auto;text-align:center;padding:20px}
+.stk input{width:64px;padding:5px}
+@media(max-width:760px){.app{flex-direction:column}nav{width:100%;height:auto;position:static;flex-direction:row;overflow-x:auto;padding:8px}.brand,nav .sp{display:none}nav button{white-space:nowrap}main{padding:14px}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const T={
+dash:['ড্যাশবোর্ড','Dashboard'],prod:['পণ্য ও স্টক','Products & Stock'],ord:['অর্ডার','Orders'],exp:['খরচ','Expenses'],bak:['ব্যাকআপ','Backup'],
+sales:['মোট বিক্রয়','Total sales'],profit:['নেট লাভ','Net profit'],orders:['মোট অর্ডার','Total orders'],stockn:['স্টকে জোড়া','Pairs in stock'],
+stockv:['স্টক ভ্যালু','Stock value'],cdue:['কুরিয়ারে আটকে','Courier due'],low:['কম স্টক','Low stock'],none:['কিছু নেই','Nothing yet'],
+add:['যোগ করুন','Add'],save:['সংরক্ষণ','Save'],cancel:['বাতিল','Cancel'],del
